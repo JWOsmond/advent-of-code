@@ -47,8 +47,7 @@ class Dial2:
             anti_clockwise_turn = 100 - turn_size
 
         if dir == "R" and self.num + anti_clockwise_turn > 99:
-            if self.num != 0:
-                self.zero_count += 1
+            self.zero_count += 1
             self.num -= clockwise_turn
         elif dir == "R":
             self.num += anti_clockwise_turn
