@@ -51,8 +51,6 @@ class Dial2:
             self.num -= clockwise_turn
         elif dir == "R":
             self.num += anti_clockwise_turn
-            if self.num == 0 and anti_clockwise_turn != 0:
-                self.zero_count += 1
         elif dir == "L" and self.num - clockwise_turn < 0:
             if self.num != 0:
                 self.zero_count += 1
