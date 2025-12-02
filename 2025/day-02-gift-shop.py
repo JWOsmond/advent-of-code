@@ -1,26 +1,13 @@
 import re
 
 
-def identify_rulebreaking_id1(n: int) -> bool:
-    return bool(re.match(r"^(\d+)\1$", str(n)))
-
-
-def identify_rulebreaking_ids_in_range1(a: int, b: int) -> list[int]:
+def identify_rulebreaking_ids_in_range(
+    a: int, b: int, only_one_repeat_disallowed: bool
+) -> list[int]:
+    regex = r"^(\d+)\1$" if only_one_repeat_disallowed else r"^(\d+)\1+$"
     rulebreakers: list[int] = []
     for n in range(a, b + 1):
-        if identify_rulebreaking_id1(n):
-            rulebreakers.append(n)
-    return rulebreakers
-
-
-def identify_rulebreaking_id2(n: int) -> bool:
-    return bool(re.match(r"^(\d+)\1+$", str(n)))
-
-
-def identify_rulebreaking_ids_in_range2(a: int, b: int) -> list[int]:
-    rulebreakers: list[int] = []
-    for n in range(a, b + 1):
-        if identify_rulebreaking_id2(n):
+        if re.match(regex, str(n)):
             rulebreakers.append(n)
     return rulebreakers
 
@@ -34,9 +21,13 @@ if __name__ == "__main__":
     ]
 
     rulebreakers1: list[int] = [
-        n for (a, b) in id_ranges for n in identify_rulebreaking_ids_in_range1(a, b)
+        n
+        for (a, b) in id_ranges
+        for n in identify_rulebreaking_ids_in_range(a, b, True)
     ]
     rulebreakers2: list[int] = [
-        n for (a, b) in id_ranges for n in identify_rulebreaking_ids_in_range2(a, b)
+        n
+        for (a, b) in id_ranges
+        for n in identify_rulebreaking_ids_in_range(a, b, False)
     ]
     print(f"{sum(rulebreakers1)=}, {sum(rulebreakers2)=}")
