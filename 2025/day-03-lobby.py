@@ -1,6 +1,3 @@
-import re
-
-
 def max_joltage_from_bank(bank: str, num_to_turn_on: int) -> int:
     starting_index: int = 0
     vals_to_keep: str = ""
