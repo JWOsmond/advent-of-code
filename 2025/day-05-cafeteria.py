@@ -11,8 +11,9 @@ def construct_distinct_ranges(ranges_ints: list[list[int]]):
         .reset_index(drop=True)
     )
 
-    # if maxima not in order having ordered by minima, then an out-of-order
-    # maximum indicates a range being a subset of the previous range
+    # if the maxima are not in order after having ordered by minima, then an
+    # out-of-order maximum indicates a range being a subset of the previous range.
+    # These subset ranges can be removed.
     indices_to_keep: list[bool] = [True]
     for idx, (min_, max_) in df[1:].iterrows():
         if max_ <= df.loc[: (idx - 1), "max"].max():  # pyright: ignore[reportOperatorIssue]
