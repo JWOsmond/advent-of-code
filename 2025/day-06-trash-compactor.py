@@ -3,7 +3,7 @@ import re
 import numpy as np
 
 
-def process_problem_1(lines: list[str]) -> list[list[str]]:
+def process_problem_1(lines: list[str]) -> np.ndarray:
     return np.array(
         [re.sub(r"\s+", " ", line.strip()).split(" ") for line in lines]
     ).T
@@ -25,7 +25,7 @@ if __name__ == "__main__":
     with open("2025/input/homework.txt") as f:
         lines: list[str] = f.readlines()
     
-    homework_1: list[list[str]] = process_problem_1(lines)
+    homework_1: np.ndarray = process_problem_1(lines)
     total: int = 0
     for problem in homework_1:
         *numbers, operation = problem
