@@ -23,6 +23,18 @@ def process_problem_2(lines: list[str]):
     return np.array(new_lines).T
 
 
+def solve_problem_1(numbers: list[str], operation: str) -> int:
+    if operation == "+":
+        result: int = 0
+        for number in numbers:
+            result += int(number)
+    else:
+        result: int = 1
+        for number in numbers:
+            result *= int(number)
+    return result
+
+
 def solve_problem_2(numbers: list[str], operation: str) -> int:
     numbers = [number.replace(" ", "x") for number in numbers]
 
@@ -43,31 +55,18 @@ def solve_problem_2(numbers: list[str], operation: str) -> int:
     return result
 
 
-def solve_problem(numbers: list[str], operation: str) -> int:
-    if operation == "+":
-        result: int = 0
-        for number in numbers:
-            result += int(number)
-    else:
-        result: int = 1
-        for number in numbers:
-            result *= int(number)
-    return result
-
-
 if __name__ == "__main__":
     with open("2025/input/homework.txt") as f:
         lines: list[str] = f.readlines()
 
     homework_1: np.ndarray = process_problem_1(lines)
-    total: int = 0
+    total_1: int = 0
     for problem in homework_1:
         *numbers, operation = problem
-        total += solve_problem(numbers, operation=operation)
-    print(f"{total=}")
-    problem_2_processed: np.ndarray = process_problem_2(lines)
-    total: int = 0
-    for problem in problem_2_processed:
+        total_1 += solve_problem_1(numbers, operation=operation)
+    homework_2: np.ndarray = process_problem_2(lines)
+    total_2: int = 0
+    for problem in homework_2:
         *numbers, operation = problem.tolist()
-        total += solve_problem_2(numbers, operation=operation)
-    print(f"{total=}")
+        total_2 += solve_problem_2(numbers, operation=operation)
+    print(f"{total_1=}, {total_2}")
