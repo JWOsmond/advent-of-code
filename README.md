@@ -35,5 +35,9 @@ conda activate advent-of-code-env
 You can run desired scripts now with the command, e.g.:
 
 ```shell
-python 2025/day-1-secret-entrance.py
+python 2025/day-01-secret-entrance.py
 ```
+
+## Data
+
+Datasets need to be downloaded from the problem page and saved to a file name specified in the README within a given year's folder. For example, `2025/day-01-secret-entrance.py` requires there to be a file named `directions.txt` inside the `2025/input` directory. You can generate your own personalised problem dataset on the page for that problem, or copy the example dataset for each problem to the file with the right name.
